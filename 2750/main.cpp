@@ -1,31 +1,28 @@
 #include <iostream>
 #include <vector>
-#include <set>
+#include <algorithm>
 
-using namespace std;
+// using namespace std; // 실무에서는 이름 충돌의 위험이 있어 사용을 지양하는 것이 좋음
 
-void PrintVector(const vector<int>& v){
-    for(int num : v){
-        cout << num << " ";
-    }
-}
+int main() {
+    // 입출력 속도 향상 (알고리즘 풀이 시 유용)
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(NULL);
 
-int main(){
     int n;
+    std::cin >> n;
 
-    cin >> n;
-
-    vector <int> arr;
-
-    for(int i = 0; i < n; i++){
-        int a;
-        cin >> a;
-        arr.push_back(a);
+    std::vector<int> numbers(n);
+    for (int i = 0; i < n; ++i) {
+        std::cin >> numbers[i];
     }
 
-    set<int> unique_numbers_set(arr.begin(), arr.end());
-    vector<int> unique_numbers_vector(unique_numbers_set.begin(), unique_numbers_set.end());
+    // std::sort를 사용하여 벡터를 오름차순으로 정렬
+    std::sort(numbers.begin(), numbers.end());
 
-    PrintVector(unique_numbers_vector);
+    for (int num : numbers) {
+        std::cout << num << '\n'; // std::endl 보다 '\n'이 더 빠름
+    }
+
+    return 0;
 }
-
